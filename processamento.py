@@ -4,7 +4,10 @@ from bs4 import BeautifulSoup
 import unidecode
 import nltk
 from nltk.corpus import stopwords
-nltk.download('stopwords')
+#nltk.download('stopwords')
+#from nltk.stem import WordNetLemmatizer
+#nltk.download('wordnet')
+from nltk.stem.porter import PorterStemmer
 
 # Deixa toda a string para letras minusculas
 def _toLower (string):
@@ -39,29 +42,39 @@ def _tokenize (string):
     return tokenized_string
 
 
-
 # Remoção de palavras-vazias (muito comuns)
-def _removeStopWords (string):
-    print('remove palavras vazias')
-
+def _removeStopWords (tokenized_string, language='english'):
+    stopword = stopwords.words(language)
+    text = [word for word in tokenized_string if word not in stopword]
+    return text
+'''
 # Normalização
-def _normalize (string):
-    print('normalizando')
+def _normalize (tokenized_string):
+    wn = WordNetLemmatizer()
+    text = [wn.lemmatize(word) for word in tokenized_string]
+    return text
+'''
+def normalize2(tokenized_string):
+	ps = PorterStemmer()
+	text = [ps.stem(word) for word in tokenized_string]
+	return text
 
-
-
+# Realização pro processamento textual requerido
 def text_processing (string):
     string = _removeHtml(string)
     string = _toLower(string)
     string = _removeAcentos(string)
-    string = _removePontuacao
+    string = _removePontuacao(string)
     string = _removeBracketsContent(string)
+    string = _tokenize(string)
+    string = _removeStopWords(string)
+    string = _normalize(string)
     return string
 
 
 
 
-string = input()
+#string = input()
 '''
 print(string)
 #a = text_processing(string)
@@ -69,5 +82,5 @@ a = _removePontuacao(string)
 print(a)
 '''
 
-a = _tokenize(string)
+a = text_processing("Son of Tamriel you are the fucking Dragonborn")
 print(a)
