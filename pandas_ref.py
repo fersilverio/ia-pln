@@ -3,7 +3,7 @@ import pandas as pd
 up = lambda s: s.upper()
 
 
-array = ['a','b','c']
+array = ['a', 'b', 'c']
 
 df_array = pd.DataFrame(data=array)
 

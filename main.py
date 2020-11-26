@@ -17,3 +17,4 @@ print(base[3])
 # O ORIGINAL #
 base = data['review'].apply(text_processing)
 print(base)
+'''
