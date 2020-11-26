@@ -1,10 +1,12 @@
-bs4
+beautifulsoup4
 nltk
 numpy
 pandas
-re
+regex
 seaborn
-sklearn
-string
+scipy
+scikit-learn
+python-string-utils
 tqdm
-unicodedata
+Unidecode
+matplotlib
