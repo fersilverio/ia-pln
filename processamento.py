@@ -8,6 +8,7 @@ from nltk.corpus import stopwords
 #from nltk.stem import WordNetLemmatizer
 #nltk.download('wordnet')
 from nltk.stem.porter import PorterStemmer
+from nltk.tokenize.treebank import TreebankWordDetokenizer
 
 # Deixa toda a string para letras minusculas
 def _toLower (string):
@@ -59,6 +60,13 @@ def _normalize(tokenized_string):
 	text = [ps.stem(word) for word in tokenized_string]
 	return text
 
+
+
+def _backToText(string):
+    detokenized_string = TreebankWordDetokenizer().detokenize(string)
+    return detokenized_string
+
+
 # Realização pro processamento textual requerido
 def text_processing (string):
     string = _removeHtml(string)
@@ -69,6 +77,7 @@ def text_processing (string):
     string = _tokenize(string)
     string = _removeStopWords(string)
     string = _normalize(string)
+    string = _backToText(string)
     return string
 
 

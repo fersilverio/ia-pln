@@ -6,6 +6,8 @@ from processamento import text_processing
 #base = dt['review'].apply(text_processing)
 #print('DEPOIS:\n\n')
 #print(base)
+
+
 '''
 #acessando o original no dt, ou seja a review da posicao 3 do dataframe
 print(dt['review'][3])
@@ -14,6 +16,7 @@ print(base[3])
 '''
 
 '''
-# O ORIGINAL #
+# O ORIGINAL A SER USADO QUANDO O TRABALHO ESTIVER PRONTO #
 base = data['review'].apply(text_processing)
 print(base)
+'''
