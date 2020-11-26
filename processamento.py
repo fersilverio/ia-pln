@@ -54,7 +54,7 @@ def _normalize (tokenized_string):
     text = [wn.lemmatize(word) for word in tokenized_string]
     return text
 '''
-def normalize2(tokenized_string):
+def _normalize(tokenized_string):
 	ps = PorterStemmer()
 	text = [ps.stem(word) for word in tokenized_string]
 	return text
@@ -82,5 +82,5 @@ a = _removePontuacao(string)
 print(a)
 '''
 
-a = text_processing("Son of Tamriel you are the fucking Dragonborn")
-print(a)
+#a = text_processing("Son of Tamriel you are the fucking Dragonborn")
+#print(a)
