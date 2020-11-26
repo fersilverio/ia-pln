@@ -16,7 +16,7 @@ print(base[3])
 '''
 
 '''
-# O ORIGINAL A SER USADO QUANDO O TRABALHO ESTIVER PRONTO #
+# O ORIGINAL A SER USADO QUANDO O TRABALHO ESTIVER PRONTO#
 base = data['review'].apply(text_processing)
 print(base)
 '''
