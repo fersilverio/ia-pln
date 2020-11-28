@@ -53,7 +53,7 @@ A métrica utilizada para avaliar os resultados gerados pelo Classificador será
 # from avaliacao import *
 
 
-dados = le_dados('input/imdb-dataset.csv')
+dados = le_dados('dados.csv')
 dt = dados.head(10)
 #print(dt)
 #print(type(dados))
