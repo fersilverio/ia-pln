@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 # TERM FREQUENCY–INVERSE DOCUMENT FREQUENCY
 def tf_idf(string):
 	from sklearn.feature_extraction.text import TfidfVectorizer
-	x_train, x_test = train_test_split(string, test_size=0.2)
+	x_train, x_test = train_test_split(string, test_size=0.3)
 	vectorizer = TfidfVectorizer(stop_words='english', analyzer='char', ngram_range=(1, 1), max_features=50000)
 	vectorizer.fit_transform(x_train)
 	vectorizer.transform(x_test)

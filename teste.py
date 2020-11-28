@@ -1,4 +1,4 @@
-from leitura import le_dados
+from leitura import *
 from processamento import *
 from extracao import *
 
