@@ -7,16 +7,8 @@ def le_dados(arquivo):
 	if op.isfile(arquivo):
 		dados = pd.read_csv(arquivo, encoding='utf-8')
 		dados.columns = ['review', 'sentiment']
+		#dados.head()
+		#dados['sentiment'].value_counts()
+		dados['sentiment_num'] = dados.sentiment.map({'negative':0, 'positive':1})
+		# dados.head()
 		return dados
-
-
-dados = le_dados('input/imdb-dataset.csv')
-dt = dados.head(10)
-#print(dt)
-#print(type(dados))
-
-#print(dados.iloc[0][0])
-#print(dados.columns)
-#print(dados.head(10)) #mostra os registros de 0 a 9
-
-#print(dados)

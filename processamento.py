@@ -14,7 +14,7 @@ def remove_acentos(string):
 
 # REMOVE A PONTUAÇÃO
 def remove_pontuacao(string):
-	return re.sub('[!.,;?@#$%&:()^/|]', '', string)
+	return re.sub(r'[!.,;?@#$%&:()^/|]', '', string)
 
 
 # REMOVE AS TAGS HTML
@@ -26,7 +26,7 @@ def remove_html(string):
 
 # REMOVE OS COLCHETES E SEU CONTEÚDO INTERNO
 def remove_conteudo_colchetes(string):
-	return re.sub('\[[^]]*\]', '', string)
+	return re.sub(r'\[[^]]*\]', '', string)
 
 
 # CONVERTE A STRING EM LISTA TOKENIZADA
@@ -48,9 +48,10 @@ def remove_palavras_vazias(lista, idioma='english'):
 def remove_caracteres_especiais(string):
 	return re.sub(r'[^a-zA-z0-9\s]', '', string)
 
+
 # NORMALIZA AS PALAVRAS (LEMATIZA (REDUZ AS FORMAS DE PALAVRAS A LEMAS VÁLIDOS LINGUISTICAMENTE) E STEMIZA (REDUZ PALAVRAS FLEXIONADAS OU DERIVADAS))
-def normaliza(lista, method='all'):
-	if method != 'stemming':
+def normaliza(lista, metodo='all'):
+	if metodo != 'stemming':
 		try:
 			from nltk.stem import WordNetLemmatizer
 		except:
@@ -58,7 +59,7 @@ def normaliza(lista, method='all'):
 			from nltk.stem import WordNetLemmatizer
 		wn = WordNetLemmatizer()
 		lista = [wn.lemmatize(string) for string in lista]
-	if method != 'lemmatizing':
+	if metodo != 'lemmatizing':
 		from nltk.stem.porter import PorterStemmer
 		ps = PorterStemmer()
 		lista = [ps.stem(string) for string in lista]
@@ -74,8 +75,8 @@ def converte_string(lista):
 
 # FUNÇÃO PRINCIPAL (RETIRA IMPUREZAS QUE NÃO AJUDAM A IDENTIFICAR A CLASSE DO TEXTO)
 def processa_texto(string):
-	string = remove_html(string)
 	string = converte_minuscula(string)
+	string = remove_html(string)
 	string = remove_acentos(string)
 	string = remove_pontuacao(string)
 	string = remove_conteudo_colchetes(string)
