@@ -1,21 +1,19 @@
-from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
 
 
 # TERM FREQUENCY–INVERSE DOCUMENT FREQUENCY
-def tf_idf(processedDf):
-	from sklearn.feature_extraction.text import TfidfVectorizer
-	x_train, x_test = train_test_split(processedDf, test_size=0.3)
-	tfidf = TfidfVectorizer(stop_words='english', analyzer='char', ngram_range=(1, 1), max_features=50000)
-	tfidf_train = tfidf.fit_transform(x_train)
-	tfidf_test = tfidf.transform(x_test)
+# x_train e x_test são relativos a review
+def tf_idf(x_train,x_test):	
+	tfidf_vectorizer = TfidfVectorizer(use_idf=True,ngram_range=(1, 3))
+	tfidf_train = tfidf_vectorizer.fit_transform(x_train)
+	tfidf_test = tfidf_vectorizer.transform(x_test)
 	return tfidf_train, tfidf_test
 
-
 # BAG OF WORDS
-def bow(processedDf):
-	from sklearn.feature_extraction.text import CountVectorizer
-	x_train, x_test = train_test_split(processedDf, test_size=0.3)
-	bow = CountVectorizer(stop_words='english', analyzer='char', ngram_range=(1, 1), max_features=50000)
+# x_train e x_test são relativos a review
+def bow(x_train,x_test):
+	bow = CountVectorizer(min_df=0,max_df=1,binary=False,ngram_range=(1,3))
 	bow_train = bow.fit_transform(x_train)
 	bow_test = bow.transform(x_test)
 	return bow_train, bow_test
