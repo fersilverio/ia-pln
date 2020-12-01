@@ -68,8 +68,6 @@ def normaliza(lista, metodo='all'):
 
 # CONVERTE LISTA DE TOKENS EM STRING
 def converte_string(lista):
-	# from nltk.tokenize.treebank import TreebankWordDetokenizer
-	# return TreebankWordDetokenizer().detokenize(lista)
 	return ' '.join(lista)
 
 

@@ -1,24 +1,28 @@
-import numpy as np
-import nltk
-from sklearn.preprocessing import LabelBinarizer
-import string,unicodedata
-from sklearn.linear_model import LogisticRegression,SGDClassifier
-from sklearn.svm import SVC
-from textblob import TextBlob
-from textblob import Word
-import os
+import sys
 import warnings
 warnings.filterwarnings('ignore')
-
-
+from sklearn.preprocessing import LabelBinarizer
 from processamento import *
 from leitura import *
 from extracao import *
 from classificacao import *
 
+#Definição de parametro
+selected_model = sys.argv[1]
+
+
+if selected_model == 't':
+    print('TF_IDF model selected.')
+elif selected_model == 'b':
+    print('BAG OF WORDS model selected.')
+else:
+    print('Invalid option, closing program...')
+    exit()
+
+
 #Leitura do arquivo de dados
 
-imdb_data = le_dados('dados.csv')
+imdb_data = le_dados('IMDB Dataset.csv')
 
 #Divisão dos dados entre treino e teste
 
@@ -39,11 +43,13 @@ processed_train_reviews = imdb_data.review[:40000]
 #Reviews para o teste pré processadas
 processed_test_reviews = imdb_data.review[40000:] 
 
-#Transformando em matrizes tf_idf para treino e teste
-tf_idf_train_reviews, tf_idf_test_reviews = tf_idf(processed_train_reviews, processed_test_reviews)
+if selected_model == 't':
+    #Transformando em matrizes tf_idf para treino e teste
+    tf_idf_train_reviews, tf_idf_test_reviews = tf_idf(processed_train_reviews, processed_test_reviews)
+else:
+    #Transformando em matrizes BOW para treino e teste
+    bow_train_reviews, bow_test_reviews = bow(processed_train_reviews, processed_test_reviews)
 
-#Transformando em matrizes BOW para treino e teste
-bow_train_reviews, bow_test_reviews = bow(processed_train_reviews, processed_test_reviews) #ainda em teste
 
 #Nomeando para binário a coluna de sentimentos
 lb = LabelBinarizer()
@@ -55,5 +61,7 @@ train_sentiments = sentiment_data[:40000]
 test_sentiments = sentiment_data[40000:]
 
 #Chamando classificador e avaliador
-multinomial_nb(tf_idf_train_reviews, tf_idf_test_reviews, train_sentiments, test_sentiments)
-#multinomial_nb(bow_train_reviews, bow_test_reviews, train_sentiments, test_sentiments)
+if selected_model == 't':
+    multinomial_nb(tf_idf_train_reviews, tf_idf_test_reviews, train_sentiments, test_sentiments)
+else:
+    multinomial_nb(bow_train_reviews, bow_test_reviews, train_sentiments, test_sentiments)
