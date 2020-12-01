@@ -1,1 +1,35 @@
 pip install -r requirements.txt
+
+
+-----------------------------------------
+              Bag of Words
+-----------------------------------------
+Time: 04:16s
+
+Accuracy Score: 0.7439
+
+Classification Report: Precision    Recall  F1-Score   Support
+         Positive         0.73       0.76     0.75       4993
+         Negative         0.75       0.72     0.74       5007
+         Accuracy                             0.74      10000
+         Macro AVG        0.74       0.74     0.74      10000
+         Weighted AVG     0.74       0.74     0.74      10000
+
+Confusion Matrix: [[3812, 1181], [1380, 3627]]
+
+
+-----------------------------------------
+Term Frequency–Inverse Document Frequency
+-----------------------------------------
+Time: 04:29s
+
+Accuracy Score: 0.8861
+
+Classification Report: Precision    Recall  F1-Score   Support
+         Positive         0.88       0.89     0.89       4993
+         Negative         0.89       0.88     0.89       5007
+         Accuracy                             0.89      10000
+         Macro AVG        0.89       0.89     0.89      10000
+         Weighted AVG     0.89       0.89     0.89      10000
+
+Confusion Matrix: [[4467, 526], [613, 4394]]

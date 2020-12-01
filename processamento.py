@@ -44,6 +44,7 @@ def remove_palavras_vazias(lista, idioma='english'):
 	sw = stopwords.words(idioma)
 	return [string for string in lista if string not in sw]
 
+
 # REMOVE CARACTERES ESPECIAIS
 def remove_caracteres_especiais(string):
 	return re.sub(r'[^a-zA-z0-9\s]', '', string)
